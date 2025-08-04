@@ -14,30 +14,26 @@
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description><![CDATA[
-    <h2>Enhanced Problem Copying for IntelliJ IDEA</h2>
+    <h2>Enhanced Problem Copying for JetBrains IDEs</h2>
     
     <p>Copy warnings and errors from the Problems panel with full context including file name and line number.</p>
     
-    <!-- Demo GIF will be displayed on JetBrains Marketplace -->
+    <img src="https://raw.githubusercontent.com/QA-Vlad/CopyProblemPlus/master/src/main/resources/META-INF/demo.gif" alt="Copy Problem Plus Demo" width="600"/><br><br>
     
-    <h3>Features:</h3>
-    <ul>
-        <li>Copy problems with enhanced format: <em>In file FileName.kt - Warning description (Line № 42)</em></li>
-        <li>Quick keyboard shortcut: <strong>Ctrl+Alt+P</strong></li>
-        <li>Works with all problem types: errors, warnings, weak warnings, etc.</li>
-        <li>Configurable settings to hide standard copy action</li>
-        <li>Visual notification when problem is copied</li>
-    </ul>
+    <b>Features:</b><br>
+    • Copy single problem with file context: <code>In file MyClass.kt - Class "MyClass" is never used (Line № 10)</code><br>
+    • Copy all problems from a file at once<br>
+    • Export all project problems to Markdown<br>
+    • Customizable format patterns<br>
+    • Quick keyboard shortcuts: <b>Ctrl+Alt+P</b> and <b>Ctrl+Shift+Alt+P</b><br><br>
     
-    <h3>Usage:</h3>
-    <ol>
-        <li>Open the Problems panel</li>
-        <li>Right-click on any problem</li>
-        <li>Select "Copy Problem Plus" or use <strong>Ctrl+Alt+P</strong></li>
-        <li>Paste the formatted problem description anywhere</li>
-    </ol>
-    
-    <p>Perfect for creating bug reports, documentation, or sharing problems with team members!</p>
+    <b>Usage:</b><br>
+    • Right-click on any problem in the Problems panel<br>
+    • Use Ctrl+Alt+P to copy single problem<br>
+    • Use Ctrl+Shift+Alt+P to export all project problems<br><br>
+    <b>Scan Modes:</b><br>
+    • <b>Quick:</b> Collects problems from open tabs in Problems panel<br>
+    • <b>Full Inspection:</b> Uses CodeSmellDetector API. If no problems found, suggests running Analyze → Inspect Code manually
   ]]></description>
 
     <!-- Product and plugin compatibility requirements.
@@ -62,7 +58,7 @@
     </extensions>
     
     <actions>
-        <!-- Действие для панели Problems -->
+        <!-- Действие для копирования одной проблемы -->
         <!-- suppress UnresolvedPropertyKey -->
         <action id="CopyProblemPlus.CopyProblemWithContext"
                 class="io.github.qavlad.copyproblemplus.CopyProblemFromPanelAction"
@@ -71,6 +67,16 @@
                 icon="AllIcons.Actions.Copy">
             <add-to-group group-id="ProblemsView.ToolWindow.TreePopup" anchor="after" relative-to-action="ProblemsView.QuickFixes"/>
             <keyboard-shortcut first-keystroke="ctrl alt P" keymap="$default"/>
+        </action>
+        
+        <!-- Действие для копирования всех проблем проекта -->
+        <action id="CopyProblemPlus.CopyAllProjectProblems"
+                class="io.github.qavlad.copyproblemplus.actions.CopyAllProjectProblemsAction"
+                text="Copy All Project Problems"
+                description="Copy all problems using the same inspection mechanism as pre-commit analysis"
+                icon="AllIcons.Actions.Copy">
+            <add-to-group group-id="ProblemsView.ToolWindow.TreePopup" anchor="after" relative-to-action="CopyProblemPlus.CopyProblemWithContext"/>
+            <keyboard-shortcut first-keystroke="ctrl shift alt P" keymap="$default"/>
         </action>
     </actions>
 </idea-plugin>

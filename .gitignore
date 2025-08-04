@@ -43,5 +43,14 @@ bin/
 /Временные файлы и скрины/
 /CLAUDE.md
 
+### Claude AI ###
+/.claude/
+
+### IntelliJ Run Configurations ###
+/.run/
+
+### Media files ###
+/media/
+
 ### Plugin Sandbox ###
 /sandbox-persistent/
