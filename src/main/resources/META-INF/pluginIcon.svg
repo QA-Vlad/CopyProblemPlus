@@ -1,12 +1,41 @@
 <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M32.0845 7.94025V4H24.0203V7.9896H16.029V4H7.91553V7.94025H4V36H16.0044V32.0045C16.0058 30.9457 16.4274 29.9308 17.1766 29.1826C17.9258 28.4345 18.9412 28.0143 20 28.0143C21.0588 28.0143 22.0743 28.4345 22.8234 29.1826C23.5726 29.9308 23.9942 30.9457 23.9956 32.0045V36H36V7.94025H32.0845Z"
-          fill="url(#paint0_linear)"/>
-    <defs>
-        <linearGradient id="paint0_linear" x1="2.94192" y1="4.89955" x2="37.7772" y2="39.7345"
-                        gradientUnits="userSpaceOnUse">
-            <stop offset="0.15937" stop-color="#3BEA62"/>
-            <stop offset="0.5404" stop-color="#3C99CC"/>
-            <stop offset="0.93739" stop-color="#6B57FF"/>
-        </linearGradient>
-    </defs>
+    <!-- Background circle -->
+    <circle cx="20" cy="20" r="18" fill="#2B2B2B" stroke="#3C3F41" stroke-width="1"/>
+    
+    <!-- Clipboard shape -->
+    <path d="M10 8 C10 6.895 10.895 6 12 6 L16 6 L16 5 C16 3.895 16.895 3 18 3 L22 3 C23.105 3 24 3.895 24 5 L24 6 L28 6 C29.105 6 30 6.895 30 8 L30 32 C30 33.105 29.105 34 28 34 L12 34 C10.895 34 10 33.105 10 32 Z" 
+          fill="#3C3F41" stroke="#5C5C5C" stroke-width="1"/>
+    
+    <!-- Clipboard clip -->
+    <rect x="17" y="4" width="6" height="4" rx="1" fill="#5C5C5C"/>
+    
+    <!-- Code lines -->
+    <rect x="14" y="11" width="12" height="1.5" rx="0.75" fill="#A9B7C6"/>
+    <rect x="14" y="14" width="10" height="1.5" rx="0.75" fill="#A9B7C6"/>
+    <rect x="14" y="17" width="12" height="1.5" rx="0.75" fill="#FF6B68"/> <!-- Error line -->
+    <rect x="14" y="20" width="8" height="1.5" rx="0.75" fill="#A9B7C6"/>
+    
+    <!-- Copy symbol (two overlapping squares) -->
+    <rect x="22" y="24" width="7" height="7" rx="1" fill="#3C3F41" stroke="#6AB700" stroke-width="1.5"/>
+    <rect x="25" y="27" width="7" height="7" rx="1" fill="#2B2B2B" stroke="#6AB700" stroke-width="1.5"/>
+    
+    <!-- Warning/Error indicator -->
+    <circle cx="30" cy="10" r="5" fill="#FF6B68"/>
+    <text x="30" y="13.5" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="8" font-weight="bold">!</text>
+    
+    <!-- Little clown emoji in bottom left -->
+    <g transform="translate(5, 25)">
+        <!-- Clown face -->
+        <circle cx="5" cy="5" r="4" fill="#FFD93D"/>
+        <!-- Red nose -->
+        <circle cx="5" cy="5.5" r="1" fill="#FF6B68"/>
+        <!-- Eyes -->
+        <circle cx="3.5" cy="4" r="0.5" fill="#000"/>
+        <circle cx="6.5" cy="4" r="0.5" fill="#000"/>
+        <!-- Red hair sides -->
+        <circle cx="1.5" cy="4" r="1.5" fill="#FF6B68"/>
+        <circle cx="8.5" cy="4" r="1.5" fill="#FF6B68"/>
+        <!-- Smile -->
+        <path d="M 3 6.5 Q 5 7.5 7 6.5" stroke="#000" stroke-width="0.5" fill="none"/>
+    </g>
 </svg>
