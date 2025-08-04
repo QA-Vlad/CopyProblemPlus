@@ -60,6 +60,7 @@
         <!-- suppress UnresolvedPropertyKey -->
         <applicationConfigurable 
             id="io.github.qavlad.copyproblemplus.settings"
+            parentId="tools"
             instance="io.github.qavlad.copyproblemplus.settings.CopyProblemPlusConfigurable"
             displayName="Copy Problem Plus"/>
             
