@@ -60,7 +60,7 @@ class CopyProblemPlusActionCustomizer : ProjectActivity {
             if (standardAction == null) {
                 // Log all available actions in the group to find the correct ID
                 LOG.info("Standard copy action not found by ID. Will try alternative approach by text. Available actions:")
-                val children = group.getChildren(null)
+                val children = group.getChildActionsOrStubs()
                 children.forEach { action ->
                     val id = actionManager.getId(action) ?: "unknown"
                     val text = action.templatePresentation.text ?: "no text"
@@ -73,14 +73,14 @@ class CopyProblemPlusActionCustomizer : ProjectActivity {
             
             if (standardAction != null && settings.hideStandardCopyAction) {
                 // Remove standard action from group
-                val children = group.getChildren(null)
+                val children = group.getChildActionsOrStubs()
                 if (children.contains(standardAction)) {
                     group.remove(standardAction)
                     LOG.info("Removed standard copy action from Problems popup")
                 }
             } else if (standardAction != null) {
                 // Add it back if it was removed
-                val children = group.getChildren(null)
+                val children = group.getChildActionsOrStubs()
                 if (!children.contains(standardAction)) {
                     // Find our action to add standard action before it
                     val ourAction = actionManager.getAction("CopyProblemPlus.CopyProblemWithContext")
@@ -96,7 +96,7 @@ class CopyProblemPlusActionCustomizer : ProjectActivity {
             
             // Alternative approach: find and hide action by text
             if (settings.hideStandardCopyAction) {
-                val children = group.getChildren(null)
+                val children = group.getChildActionsOrStubs()
                 children.forEach { action ->
                     val id = actionManager.getId(action) ?: "unknown"
                     val text = action.templatePresentation.text ?: ""
@@ -112,7 +112,7 @@ class CopyProblemPlusActionCustomizer : ProjectActivity {
             } else {
                 // Restore any previously removed actions
                 removedActions.forEach { (id, action) ->
-                    val children = group.getChildren(null)
+                    val children = group.getChildActionsOrStubs()
                     if (!children.contains(action)) {
                         // Find our action to add standard action after it
                         val ourAction = actionManager.getAction("CopyProblemPlus.CopyProblemWithContext")

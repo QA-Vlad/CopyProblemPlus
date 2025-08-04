@@ -20,20 +20,29 @@
     
     <img src="https://raw.githubusercontent.com/QA-Vlad/CopyProblemPlus/master/src/main/resources/META-INF/demo.gif" alt="Copy Problem Plus Demo" width="600"/><br><br>
     
-    <b>Features:</b><br>
-    • Copy single problem with file context: <code>In file MyClass.kt - Class "MyClass" is never used (Line № 10)</code><br>
-    • Copy all problems from a file at once<br>
-    • Export all project problems to Markdown<br>
-    • Customizable format patterns<br>
-    • Quick keyboard shortcuts: <b>Ctrl+Alt+P</b> and <b>Ctrl+Shift+Alt+P</b><br><br>
+    <b>Hey there, my little vibe coder! 🤡</b><br><br>
     
-    <b>Usage:</b><br>
-    • Right-click on any problem in the Problems panel<br>
-    • Use Ctrl+Alt+P to copy single problem<br>
-    • Use Ctrl+Shift+Alt+P to export all project problems<br><br>
-    <b>Scan Modes:</b><br>
-    • <b>Quick:</b> Collects problems from open tabs in Problems panel<br>
-    • <b>Full Inspection:</b> Uses CodeSmellDetector API. If no problems found, suggests running Analyze → Inspect Code manually
+    Tired of awkwardly copying warnings from your IDE to your favorite AI chat?<br>
+    I've solved this problem for you!<br><br>
+    
+    <b>Where previously warnings copied like this:</b><br>
+    <code>[UNRESOLVED_REFERENCE] Unresolved reference: ProblemInfo</code><br><br>
+    
+    <b>Now they copy like this:</b><br>
+    <code>In file src/main/kotlin/.../CopyProblemAction.kt - [UNRESOLVED_REFERENCE] Unresolved reference: ProblemInfo (Line № 19)</code><br><br>
+    
+    No more explaining to your AI chat which file and line number the warning is on!<br><br>
+    
+    <b>Plus, you can copy ALL warnings from a file at once:</b><br>
+    <pre>Problems in file src/.../CopyProblemAction.kt:
+1. [UNRESOLVED_REFERENCE] Unresolved reference: ProblemInfo (Line № 19)
+2. Expecting an expression (Line № 19)
+3. Class "CopyProblemAction" is never used (Line № 13)
+4. Condition 'problemInfo == null' is always false (Line № 42)
+5. Condition 'problemInfo != null' is always true (Line № 47)</pre><br>
+
+    
+    <i>P.S. Now your AI assistant will definitely understand where your problems are! 😉</i>
   ]]></description>
 
     <!-- Product and plugin compatibility requirements.
@@ -69,14 +78,5 @@
             <keyboard-shortcut first-keystroke="ctrl alt P" keymap="$default"/>
         </action>
         
-        <!-- Действие для копирования всех проблем проекта -->
-        <action id="CopyProblemPlus.CopyAllProjectProblems"
-                class="io.github.qavlad.copyproblemplus.actions.CopyAllProjectProblemsAction"
-                text="Copy All Project Problems"
-                description="Copy all problems using the same inspection mechanism as pre-commit analysis"
-                icon="AllIcons.Actions.Copy">
-            <add-to-group group-id="ProblemsView.ToolWindow.TreePopup" anchor="after" relative-to-action="CopyProblemPlus.CopyProblemWithContext"/>
-            <keyboard-shortcut first-keystroke="ctrl shift alt P" keymap="$default"/>
-        </action>
     </actions>
 </idea-plugin>
