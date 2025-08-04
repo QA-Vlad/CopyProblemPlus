@@ -1,20 +1,43 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<!--suppress ALL -->
 <idea-plugin>
     <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
     <id>io.github.qavlad.CopyProblemPlus</id>
 
     <!-- Public plugin name should be written in Title Case.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
-    <name>CopyProblemPlus</name>
+    <name>Copy Problem Plus</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-    <vendor url="https://www.yourcompany.com">YourCompany</vendor>
+    <vendor url="https://qa-vlad.github.io/MY_CV/ru/">Vlad QA</vendor>
 
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description><![CDATA[
-    Enter short description for your plugin here.<br>
-    <em>most HTML tags may be used</em>
+    <h2>Enhanced Problem Copying for IntelliJ IDEA</h2>
+    
+    <p>Copy warnings and errors from the Problems panel with full context including file name and line number.</p>
+    
+    <!-- Demo GIF will be displayed on JetBrains Marketplace -->
+    
+    <h3>Features:</h3>
+    <ul>
+        <li>Copy problems with enhanced format: <em>In file FileName.kt - Warning description (Line № 42)</em></li>
+        <li>Quick keyboard shortcut: <strong>Ctrl+Alt+P</strong></li>
+        <li>Works with all problem types: errors, warnings, weak warnings, etc.</li>
+        <li>Configurable settings to hide standard copy action</li>
+        <li>Visual notification when problem is copied</li>
+    </ul>
+    
+    <h3>Usage:</h3>
+    <ol>
+        <li>Open the Problems panel</li>
+        <li>Right-click on any problem</li>
+        <li>Select "Copy Problem Plus" or use <strong>Ctrl+Alt+P</strong></li>
+        <li>Paste the formatted problem description anywhere</li>
+    </ol>
+    
+    <p>Perfect for creating bug reports, documentation, or sharing problems with team members!</p>
   ]]></description>
 
     <!-- Product and plugin compatibility requirements.
@@ -24,6 +47,30 @@
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
-
+        <notificationGroup id="CopyProblemPlus" 
+                          displayType="BALLOON"/>
+        
+        <applicationService serviceImplementation="io.github.qavlad.copyproblemplus.settings.CopyProblemPlusSettings"/>
+        
+        <!-- suppress UnresolvedPropertyKey -->
+        <applicationConfigurable 
+            id="io.github.qavlad.copyproblemplus.settings"
+            instance="io.github.qavlad.copyproblemplus.settings.CopyProblemPlusConfigurable"
+            displayName="Copy Problem Plus"/>
+            
+        <postStartupActivity implementation="io.github.qavlad.copyproblemplus.CopyProblemPlusActionCustomizer"/>
     </extensions>
+    
+    <actions>
+        <!-- Действие для панели Problems -->
+        <!-- suppress UnresolvedPropertyKey -->
+        <action id="CopyProblemPlus.CopyProblemWithContext"
+                class="io.github.qavlad.copyproblemplus.CopyProblemFromPanelAction"
+                text="Copy Problem Plus"
+                description="Copy problem with file name and line number"
+                icon="AllIcons.Actions.Copy">
+            <add-to-group group-id="ProblemsView.ToolWindow.TreePopup" anchor="after" relative-to-action="ProblemsView.QuickFixes"/>
+            <keyboard-shortcut first-keystroke="ctrl alt P" keymap="$default"/>
+        </action>
+    </actions>
 </idea-plugin>

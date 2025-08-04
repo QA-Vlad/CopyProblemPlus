@@ -1,7 +1,7 @@
 plugins {
     id("java")
-    id("org.jetbrains.kotlin.jvm") version "2.1.0"
-    id("org.jetbrains.intellij.platform") version "2.5.0"
+    id("org.jetbrains.kotlin.jvm") version "1.9.25"
+    id("org.jetbrains.intellij") version "1.17.4"
 }
 
 group = "io.github.qavlad"
@@ -9,42 +9,39 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
-    intellijPlatform {
-        defaultRepositories()
-    }
 }
 
 // Configure Gradle IntelliJ Plugin
-// Read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin.html
-dependencies {
-    intellijPlatform {
-        create("IC", "2025.1")
-        testFramework(org.jetbrains.intellij.platform.gradle.TestFrameworkType.Platform)
-
-        // Add necessary plugin dependencies for compilation here, example:
-        // bundledPlugin("com.intellij.java")
-    }
+// Read more: https://github.com/JetBrains/gradle-intellij-plugin
+intellij {
+    version.set("2023.3.8")
+    type.set("IC") // Target IDE Platform
+    plugins.set(listOf())
+    // Используем постоянную песочницу для сохранения настроек между запусками
+    sandboxDir.set("${project.projectDir}/sandbox-persistent")
 }
 
-intellijPlatform {
-    pluginConfiguration {
-        ideaVersion {
-            sinceBuild = "251"
-        }
-
-        changeNotes = """
-      Initial version
-    """.trimIndent()
-    }
-}
 
 tasks {
     // Set the JVM compatibility versions
     withType<JavaCompile> {
-        sourceCompatibility = "21"
-        targetCompatibility = "21"
+        sourceCompatibility = "17"
+        targetCompatibility = "17"
     }
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions.jvmTarget = "21"
+        kotlinOptions.jvmTarget = "17"
+    }
+    
+    patchPluginXml {
+        sinceBuild.set("233")
+        untilBuild.set("251.*")
+    }
+    
+    buildSearchableOptions {
+        enabled = false
+    }
+    
+    test {
+        enabled = false
     }
 }

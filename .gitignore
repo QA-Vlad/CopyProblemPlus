@@ -40,3 +40,8 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+/Временные файлы и скрины/
+/CLAUDE.md
+
+### Plugin Sandbox ###
+/sandbox-persistent/
