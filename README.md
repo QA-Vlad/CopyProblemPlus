@@ -1,5 +1,10 @@
 # Copy Problem Plus for JetBrains IDEs 🤡
 
+[![Version](https://img.shields.io/jetbrains/plugin/v/28098-copy-problem-plus)](https://plugins.jetbrains.com/plugin/28098-copy-problem-plus)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/28098-copy-problem-plus)](https://plugins.jetbrains.com/plugin/28098-copy-problem-plus)
+[![Rating](https://img.shields.io/jetbrains/plugin/r/rating/28098-copy-problem-plus)](https://plugins.jetbrains.com/plugin/28098-copy-problem-plus)
+[![Reviews](https://img.shields.io/badge/Leave%20a-Review-green)](https://plugins.jetbrains.com/plugin/28098-copy-problem-plus/reviews)
+
 > Hey there, my little vibe coder! Tired of awkwardly copying warnings from your IDE to your favorite AI chat? I've solved this problem for you!
 
 ![Copy Problem Plus Demo](https://raw.githubusercontent.com/QA-Vlad/CopyProblemPlus/master/src/main/resources/META-INF/demo.gif)
@@ -30,14 +35,16 @@ No more explaining to your AI chat which file and line number the warning is on!
 
 ## 📥 Installation
 
-### From JetBrains Marketplace
+### [🚀 Install from JetBrains Marketplace](https://plugins.jetbrains.com/plugin/28098-copy-problem-plus)
+
+### Method 1: From IDE
 1. Open **Settings** → **Plugins**
 2. Search for **"Copy Problem Plus"**
 3. Click **Install**
 4. Restart your IDE
 5. Start vibing! 🎉
 
-### From GitHub Release
+### Method 2: From GitHub Release
 1. Download the latest `.zip` from [Releases](https://github.com/QA-Vlad/CopyProblemPlus/releases)
 2. Open **Settings** → **Plugins** → **⚙️** → **Install Plugin from Disk...**
 3. Select the downloaded `.zip` file
