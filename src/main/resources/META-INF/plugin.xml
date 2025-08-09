@@ -45,6 +45,14 @@
     <i>P.S. Now your AI assistant will definitely understand where your problems are! 😉</i>
   ]]></description>
 
+    <!-- What's new section -->
+    <change-notes><![CDATA[
+    <h3>Version 1.0.1</h3>
+    <ul>
+        <li>Fixed the problem where some warnings were not copied in WebStorm</li>
+    </ul>
+    ]]></change-notes>
+
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
