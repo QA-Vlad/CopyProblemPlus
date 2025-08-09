@@ -78,8 +78,8 @@ class CopyProblemFromPanelAction : AnAction() {
                     LOG.info("Node text: $nodeText")
                     
                     // Проверяем, является ли выбранный узел файлом с проблемами
-                    // Файл обычно содержит расширение и не содержит номер строки в конце
-                    val isFileNode = nodeText.matches(""".*\.\w+\s*$""".toRegex()) && !nodeText.matches(""".*:\s*\d+\s*$""".toRegex())
+                    // Файл - это узел с расширением файла в конце и без дополнительного текста
+                    val isFileNode = nodeText.matches("""^[^'"\s]+\.\w{1,5}\s*$""".toRegex())
                     
                     LOG.info("Is file node: $isFileNode")
                     
@@ -196,6 +196,7 @@ class CopyProblemFromPanelAction : AnAction() {
                     } else if (nodeText.isNotBlank() && !nodeText.contains("file://")) {
                         // Это конкретная проблема
                         problemDescription = nodeText
+                        LOG.info("Set problem description from node text: $problemDescription")
                     }
                 }
             }

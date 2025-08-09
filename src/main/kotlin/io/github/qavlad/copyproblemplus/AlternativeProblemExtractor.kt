@@ -11,6 +11,8 @@ class AlternativeProblemExtractor {
         private val LOG = logger<AlternativeProblemExtractor>()
     }
     
+    private val highlightTextExtractor = HighlightInfoTextExtractor()
+    
     fun extractProblemAtCaret(
         editor: Editor,
         psiFile: PsiFile
@@ -81,7 +83,7 @@ class AlternativeProblemExtractor {
             if (tooltip != null) {
                 val highlighterLine = document.getLineNumber(highlighter.startOffset) + 1
                 val text = when (tooltip) {
-                    is HighlightInfo -> tooltip.description ?: tooltip.toolTip ?: "No description"
+                    is HighlightInfo -> highlightTextExtractor.extractText(tooltip)
                     is String -> tooltip
                     else -> tooltip.toString()
                 }

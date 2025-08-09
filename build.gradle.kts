@@ -11,6 +11,10 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+    implementation("org.jsoup:jsoup:1.17.2")
+}
+
 // Configure Gradle IntelliJ Plugin
 // Read more: https://github.com/JetBrains/gradle-intellij-plugin
 intellij {

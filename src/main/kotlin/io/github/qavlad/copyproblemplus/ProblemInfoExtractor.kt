@@ -13,6 +13,8 @@ class ProblemInfoExtractor {
         private val LOG = logger<ProblemInfoExtractor>()
     }
     
+    private val highlightTextExtractor = HighlightInfoTextExtractor()
+    
     data class ProblemInfo(
         val description: String,
         val fileName: String,
@@ -42,9 +44,11 @@ class ProblemInfoExtractor {
                 
                 when (errorStripeTooltip) {
                     is HighlightInfo -> {
+                        LOG.info("Processing HighlightInfo tooltip")
                         return createProblemInfo(errorStripeTooltip, psiFile, document)
                     }
                     is String -> {
+                        LOG.info("Processing String tooltip: $errorStripeTooltip")
                         val lineNumber = document.getLineNumber(highlighter.startOffset) + 1
                         return ProblemInfo(
                             description = errorStripeTooltip,
@@ -52,6 +56,10 @@ class ProblemInfoExtractor {
                             lineNumber = lineNumber,
                             severity = "Warning"
                         )
+                    }
+                    else -> {
+                        LOG.info("Unknown tooltip type: ${errorStripeTooltip?.javaClass?.name}")
+                        LOG.info("Tooltip content: $errorStripeTooltip")
                     }
                 }
             }
@@ -67,9 +75,10 @@ class ProblemInfoExtractor {
     ): ProblemInfo {
         val lineNumber = document.getLineNumber(highlightInfo.startOffset) + 1
         val severity = getSeverityString(highlightInfo.severity)
+        val description = highlightTextExtractor.extractText(highlightInfo)
         
         return ProblemInfo(
-            description = highlightInfo.description ?: "No description",
+            description = description,
             fileName = psiFile.name,
             lineNumber = lineNumber,
             severity = severity
