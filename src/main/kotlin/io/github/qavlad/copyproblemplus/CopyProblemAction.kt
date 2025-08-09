@@ -18,7 +18,6 @@ class CopyProblemAction : AnAction() {
     
     private val problemExtractor = ProblemInfoExtractor()
     private val alternativeExtractor = AlternativeProblemExtractor()
-    private val daemonExtractor = DaemonAnalyzerProblemExtractor()
     private val textFormatter = ProblemTextFormatter()
     
     override fun actionPerformed(event: AnActionEvent) {
@@ -41,12 +40,7 @@ class CopyProblemAction : AnAction() {
         var problemInfo = problemExtractor.extractProblemAtCaret(editor, psiFile)
         
         if (problemInfo == null) {
-            LOG.info("Primary extractor failed, trying DaemonAnalyzer method")
-            problemInfo = daemonExtractor.extractProblemAtCaret(editor, psiFile, project)
-        }
-        
-        if (problemInfo == null) {
-            LOG.info("DaemonAnalyzer failed, trying alternative method")
+            LOG.info("Primary extractor failed, trying alternative method")
             problemInfo = alternativeExtractor.extractProblemAtCaret(editor, psiFile)
         }
         
